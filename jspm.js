@@ -193,8 +193,9 @@ if (require.main !== module)
     break;
 
     case 'bundle':
-      var options = readOptions(args, ['--inject']);
+      var options = readOptions(args, ['--inject'], ['--packages']);
       var inject = !!options.inject;
+      var packagesPath = options.packages;
       var bArgs = options.args;
 
       if (bArgs.length < 2) {
@@ -215,7 +216,7 @@ if (require.main !== module)
           expression = bArgs.splice(1, bArgs.length - 2).join(' ');
           fileName = bArgs[bArgs.length - 1];
         }
-        bundle.bundle(expression, fileName, inject);
+        bundle.bundle(expression, fileName, inject, packagesPath);
       }
     break;
 
